@@ -2,11 +2,32 @@ pipeline {
   agent any
   
   stages {
-    stage('Echo Hello') {
+    stage('Git fatch') {
       steps {
-        echo 'Hello World!!'
+        echo 'Git fatch'
+        git url: 'https://github.com/sjh9397/spring-petclinic.git/'
+          branch: main, credentialId: 'gitCrednetial'
     }
   }
-}
-
+     stage('Mvn Build') {
+      steps {
+        echo 'Maven Build'
+    }
+  }
+     stage('Docker Image') {
+      steps {
+        echo 'Docker Image'
+    }
+  }
+     stage('Image push') {
+      steps {
+        echo 'Image push'
+    }
+  }
+     stage('Codedeploy Workload') {
+      steps {
+        echo 'Codedeploy Workload'
+    }
+  }
+ }
 }
